@@ -1,0 +1,120 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <!-- Step 1: import the element to test -->
+    <link rel="import" href="../vertical-text-spinner.html">
+    <script src="../../iron-test-helpers/mock-interactions.js"></script>    
+  </head>
+  <body>
+
+    <!-- You can use the document as a place to set up your fixtures. -->
+    <test-fixture id="fixture-1">
+      <template>
+        <vertical-text-spinner class="spstyle" content="initial content"></vertical-text-spinner>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('<vertical-text-spinner>', function() {
+
+        var myEl;
+
+        setup(function() {
+          myEl = fixture('fixture-1');
+        });
+
+        test('checks if initial content is properly set', function() {
+          assert.equal(myEl.getText(), 'initial content');
+        });
+
+        test('spins up and checks if text is properly set', function(done) {
+          myEl.spinUp("Up content");
+          setTimeout(function() {
+            assert.equal(myEl.getText(), 'Up content');
+            done();
+          }, 600);
+        });
+        
+        test('spins down and checks if text is properly set', function(done) {
+          myEl.spinUp("Down content");
+          setTimeout(function() {
+            assert.equal(myEl.getText(), 'Down content');
+            done();
+          }, 600);
+        });
+
+        test("spins up and waits for 'spin-complete' event to be fired", function(done) {
+
+          myEl.addEventListener('spin-complete', function(event) {
+            assert.equal(event.detail.direction, 'up');
+            assert.equal(event.detail.prevContent, 'initial content');
+            assert.equal(event.detail.currContent, 'Up and firing');
+            done();
+          });
+          
+          myEl.spinUp("Up and firing");
+        });
+        
+        test("spins down and waits for 'spin-complete' event to be fired", function(done) {
+
+          myEl.addEventListener('spin-complete', function(event) {
+            assert.equal(event.detail.direction, 'down');
+            assert.equal(event.detail.prevContent, 'initial content');
+            assert.equal(event.detail.currContent, 'Down and firing');
+            done();
+          });
+          
+          myEl.spinDown("Down and firing");
+        });
+
+        test("spins up and interrupts spin by calling spinUp() while animation is not finished", function(done) {
+
+          myEl.addEventListener('spin-complete', function(event) {
+            assert.equal(event.detail.direction, 'up');
+            assert.equal(event.detail.prevContent, 'Up and firing');
+            assert.equal(event.detail.currContent, 'Again up');
+            done();
+          });
+          
+          myEl.spinUp("Up and firing");
+          setTimeout(function(){
+            myEl.spinUp("Again up");
+          },100);
+        });
+
+
+        test("spins down and interrupts spin by calling spinDown() while animation is not finished", function(done) {
+
+          myEl.addEventListener('spin-complete', function(event) {
+            assert.equal(event.detail.direction, 'down');
+            assert.equal(event.detail.prevContent, 'Down and firing');
+            assert.equal(event.detail.currContent, 'Again down');
+            done();
+          });
+          
+          myEl.spinDown("Down and firing");
+          setTimeout(function(){
+            myEl.spinDown("Again down");
+          },100);
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/neon-animation-behavior.html">
+<link rel="import" href="../neon-animation/web-animations.html">
+
+<!--
+`<vertical-slide-animation>` Text goes up and disappears from the screen, at the same time fading out
+
+Configuration:
+```
+{
+  name: 'vertical-slide-animation',
+  node: <node>,
+  transformOrigin: <transform-origin>,
+  timing: <animation-timing>,
+  slide:'entry-from-bottom'|'entry-from-top'|'exit-through-roof'|'exit-through-floor' 
+}
+```
+-->
+
+<script>
+
+  Polymer({
+
+    is: 'vertical-slide-animation', 
+
+    behaviors: [
+      Polymer.NeonAnimationBehavior
+    ],
+
+    configure: function(config) {
+      var node = config.node;
+
+      if (config.transformOrigin) {
+        this.setPrefixedProperty(node, 'transformOrigin', config.transformOrigin);
+      }
+
+      // Default - exit through flor
+      var yTransFrom = "0";
+      var yTransTo = "150%";
+      // scale down
+      var yScaleFrom = "1";
+      var yScaleTo = "0.8";
+      // fade - out
+      var opaFrom = 1;
+      var opaTo = 0;
+      if (config.slide) {
+        switch (config.slide) {
+          case "entry-from-bottom": 
+            yTransFrom = "150%";
+            yTransTo = "0";
+            opaFrom = 0;
+            opaTo = 1;
+            yScaleFrom = "0.8";
+            yScaleTo = "1";
+          
+          break;
+          case "entry-from-top": 
+            yTransFrom = "-150%";
+            yTransTo = "0";
+            opaFrom = 0;
+            opaTo = 1;
+            yScaleFrom = "0.8";
+            yScaleTo = "1";
+          
+          break;
+
+          case "exit-through-roof": 
+            yTransFrom = "0";
+            yTransTo = "-150%";
+            opaFrom = 1;
+            opaTo = 0;
+            yScaleFrom = "1";
+            yScaleTo = "0.8";
+         
+          break;
+          default:
+
+          break;
+        }
+      }
+
+      // Remove the offsets to have the keyframes evenly
+      // distributed over the life of the animation
+      this._effect = new KeyframeEffect(node, [
+        {offset: 0.0, 'transform': 'scale(1, '+yScaleFrom+') translateY('+yTransFrom+')', 'opacity': opaFrom},
+        {offset: 1.0, 'transform': 'scale(1, '+yScaleTo+') translateY('+yTransTo+')', 'opacity': opaTo}
+
+      ], this.timingFromConfig(config));
+
+      return this._effect;
+    }
+
+  });
+
+</script>
