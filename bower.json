@@ -1,6 +1,6 @@
 {
   "name": "vertical-text-spinner",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "authors": [
     "Dejan Stefanovic <dstefanox@gmail.com>"
   ],
@@ -17,10 +17,10 @@
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/dstefanox/vertical-text-spinner/",
   "ignore": [
-    '**/.*',
-    'node_modules',
-    'bower_components',
-    'test'
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
