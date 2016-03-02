@@ -1,0 +1,41 @@
+{
+  "name": "vertical-text-spinner",
+  "authors": [
+    "Dejan Stefanovic <dstefanox@gmail.com>"
+  ],
+  "description": "An element containing text which can be spinned up and down.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "vertical-text-spinner.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/dstefanox/vertical-text-spinner/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "neon-animation": "PolymerElements/neon-animation#^1.1.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.1.0",
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.1.5"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "87441ef1bf",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "87441ef1bf670ac34135b93fbf20e0a217df6113"
+  },
+  "_source": "git://github.com/dstefanox/vertical-text-spinner.git",
+  "_target": "master",
+  "_originalSource": "dstefanox/vertical-text-spinner",
+  "_direct": true
+}

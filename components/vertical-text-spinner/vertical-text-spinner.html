@@ -1,0 +1,199 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/neon-animations.html">
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="./vertical-slide-animation.html">
+<!--
+`vertical-text-spinner` is an element containing text. Text content can be replaced, and while doing so, animation occurs.
+During animation, new text content slides in from above or from below, depending on function used to set new text content.
+
+Example:
+
+    <vertical-text-spinner></vertical-text-spinner>
+    <vertical-text-spinner content="This is initial content"></vertical-text-spinner>
+
+Element has two functions to set new text content - `spinUp` and `spinDown`. 
+To obtain current text content, use getText function. Beware that this function returns latest text content 
+once that transition is complete. While transition is in progress, function will return old text content.
+
+### Styling
+
+Element uses absolute positioning of internal elements, so it is important understand how to style it.
+By default, element has fixed height of 36 pixels, which corresponds to line height (this allows text to be centered verticaly within element).
+To keep text verticaly centered within element, keep line height and element height same values.
+
+The following custom properties are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--vertical-text-spinner-font-size` | Size of the font used to show text within element | `24px`
+`--vertical-text-spinner-line-height` | Text line height. Keep it same value as element height to make text vertically centered | `36px`
+`--vertical-text-spinner-height` | Height of the element | `36px`
+`--vertical-text-spinner-color` | Text color | `black`
+`--vertical-text-spinner-background-color` | Background color of the element | `{}`
+
+@demo demo/index.html
+-->
+
+
+<dom-module id="vertical-text-spinner">
+  <template>
+    <style>
+      :host {
+        
+      }
+      .spintext {
+
+        font-size: var(--vertical-text-spinner-font-size, 24px);
+        line-height: var(--vertical-text-spinner-line-height, 36px);
+        text-align: center;
+        margin: 0; 
+        font-weight: 400;
+      }
+      .transparent {
+        opacity: 0;
+      }
+
+      .txtholder {
+        height: var(--vertical-text-spinner-height, 36px);
+        background-color: var(--vertical-text-spinner-background-color);
+        color: var(--vertical-text-spinner-color, black);
+        overflow: hidden;
+      }
+    </style>
+      <div class="txtholder relative flex">
+        <div id="next" class="spintext transparent">{{next}}</div>
+        <div id="content" class="spintext fit" >{{content}}</div>
+      </div>
+
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'vertical-text-spinner',
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
+      listeners: {
+        'neon-animation-finish':'_onAnimationFinished'
+      },
+
+      properties: {
+        /**
+         * Text content showing in element.
+         */
+        content: {
+          type: String,
+          value: '',
+          notify: true
+        },
+
+        animationConfig: {
+          value: function() {
+            return {
+              'up': [
+                {
+                  name: 'vertical-slide-animation',
+                  node: this.$.next,
+                  timing : {
+                    duration:400
+                  },
+                  slide: "entry-from-bottom"
+                },
+                {
+                  name: 'vertical-slide-animation',
+                  node: this.$.content,
+                  timing : {
+                    duration:400
+                  },
+                  slide: "exit-through-roof"
+                }
+              ],
+              'down': [
+                {
+                  name: 'vertical-slide-animation',
+                  node: this.$.next,
+                  timing : {
+                    duration:400
+                  },
+                  slide: "entry-from-top"
+                },
+                {
+                  name: 'vertical-slide-animation',
+                  node: this.$.content,
+                  timing : {
+                    duration:400
+                  },
+                  slide: "exit-through-floor"
+                }
+              ]
+            }
+          }
+        },        
+      },
+      /**
+       * Shows given text by using entry from below animation
+       * @param {string} newText Text to show
+       */
+      spinUp:function(newText) {
+        this._spinIt(newText, "up");
+      },
+      /**
+       * Shows given text by using entry from above animation
+       * @param {string} newText Text to show
+       */
+      spinDown:function(newText) {
+        this._spinIt(newText, "down");
+      },
+      _spinIt:function(newText, direction) {
+        if (this.animating) {
+          this.content = this.next;
+        }
+        this.next = newText;
+        this.direction = direction;
+        this.animating = true;
+        this.playAnimation(direction);
+      },
+      /**
+       * Gets the currently showing text. If animation is still in progress, this function will return previous text content.
+       * @return {string} Text currently showing
+       */
+      getText:function() {
+        return this.content;
+      },
+      _onAnimationFinished: function() {
+        this.animating = false;
+        var spinInfo = {
+          prevContent: this.content,
+          currContent:this.next,
+          direction:this.direction
+        };
+        this.$.next.style.opacity=0;
+        this.content = this.next;
+        this.fire('spin-complete', spinInfo);
+      }
+      /**
+       * Fired when spinner animation is completed.
+       *
+       * @event spin-complete
+       * @param {{prevContent:string, currContent:string,direction:string}} contentInfo Provides information about previous text content, new text content and direction in which animation was performed.
+       */
+
+    });
+  })();
+  </script>
+</dom-module>
