@@ -1,6 +1,6 @@
 {
   "name": "vertical-text-spinner",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "authors": [
     "Dejan Stefanovic <dstefanox@gmail.com>"
   ],
@@ -8,16 +8,19 @@
   "keywords": [
     "web-component",
     "polymer",
-    "seed"
+    "vertical text spinner",
+    "vertical text translate",
+    "text scroll",
+    "spin text vertically"
   ],
   "main": "vertical-text-spinner.html",
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/dstefanox/vertical-text-spinner/",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test"
+    '**/.*',
+    'node_modules',
+    'bower_components',
+    'test'
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
