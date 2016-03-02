@@ -93,12 +93,10 @@ Custom property | Description | Default
       },
 
       properties: {
+        /**
+         * Text content showing in element.
+         */
         content: {
-          type: String,
-          value: '',
-          notify: true
-        },
-        next: {
           type: String,
           value: '',
           notify: true
@@ -171,7 +169,7 @@ Custom property | Description | Default
         this.playAnimation(direction);
       },
       /**
-       * Gets the currently showing text.
+       * Gets the currently showing text. If animation is still in progress, this function will return previous text content.
        * @return {string} Text currently showing
        */
       getText:function() {

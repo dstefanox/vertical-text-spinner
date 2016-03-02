@@ -47,14 +47,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <p><button id="spinup">Spin up</button><button id="spindown">Spin down</button></p>
 
         <script>
-          var seedElement = document.querySelector('vertical-text-spinner');
+          var spinner = document.querySelector('vertical-text-spinner');
 
           document.querySelector('#spinup').addEventListener('click', function() {
-            seedElement.spinUp('Spinning up...');
+            spinner.spinUp('Spinning up...');
           });
 
           document.querySelector('#spindown').addEventListener('click', function() {
-            seedElement.spinDown("Spinning down...");
+            spinner.spinDown("Spinning down...");
           });
         </script>
       </template>

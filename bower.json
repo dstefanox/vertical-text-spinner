@@ -14,10 +14,10 @@
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/dstefanox/vertical-text-spinner/",
   "ignore": [
-    '**/.*',
-    'node_modules',
-    'bower_components',
-    'test'
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.2.0",

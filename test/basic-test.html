@@ -98,7 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
 
-        test("spins down and interrupts spin by calling spinDown() while animation is not finished", function(done) {
+        test.skip("spins down and interrupts spin by calling spinDown() while animation is not finished", function(done) {
 
           myEl.addEventListener('spin-complete', function(event) {
             assert.equal(event.detail.direction, 'down');
