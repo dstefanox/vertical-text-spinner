@@ -1,7 +1,7 @@
 # vertical-text-spinner
 
 An element which shows text content which is animated when appearing/disappearing. Text gets replaced by new text which slides-in from above or below, while replaced text slides-out of the component through the bottom or the top of the component. 
-
+To get better idea about this element, check [live demo](http://dstefanox.github.io/vertical-text-spinner/components/vertical-text-spinner)
 
 
 ## Install
@@ -29,7 +29,7 @@ $ bower install vertical-text-spinner --save
 
 3. Spin some new text into component from above/below:
 
-    ```html
+    ```js
     var el = document.getElementById("spinner");
     el.spinUp("Spinning up!")
     el.spinDown("Spinning down!")
