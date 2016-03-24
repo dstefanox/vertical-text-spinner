@@ -20,7 +20,7 @@ $ bower install vertical-text-spinner --save
     <link rel="import" href="bower_components/vertical-text-spinner/vertical-text-spinner.html">
     ```
 
-2. Place it on page:
+2. Place it on the page:
 
     ```html
     <vertical-text-spinner id="spinner" content="Initial text">
