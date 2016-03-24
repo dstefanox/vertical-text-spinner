@@ -1,7 +1,9 @@
 # vertical-text-spinner
 
-An element which shows text content which is animated when appearing/disappearing. Text gets replaced by new text which slides-in from above or below, while replaced text slides-out of the component through the bottom or the top of the component. 
-To get better idea about this element, check [live demo](http://dstefanox.github.io/vertical-text-spinner/components/vertical-text-spinner)
+An Polymer element which shows text content which is animated when appearing/disappearing. Text gets replaced by new text which slides-in from above or below, while replaced text slides-out of the component through the bottom or the top of the component. 
+
+## Demo
+To get better idea about this component, check [live demo](http://dstefanox.github.io/vertical-text-spinner/components/vertical-text-spinner)
 
 
 ## Install
