@@ -14,9 +14,6 @@
       		"version":""
 	  	}
       ]
-    },
-    "local": {
-      "browsers": ["chrome", "firefox"]
     }
   }
 }
