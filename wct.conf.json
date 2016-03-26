@@ -1,0 +1,22 @@
+{
+  "verbose": true,
+  "plugins": {
+    "sauce": {
+      "browsers": [
+      	{
+      		"browserName":"chrome",
+      		"platform":"Windows 10",
+      		"version":""
+	  	},
+      	{
+      		"browserName":"firefox",
+      		"platform":"Windows 10",
+      		"version":""
+	  	}
+      ]
+    },
+    "local": {
+      "browsers": ["chrome", "firefox"]
+    }
+  }
+}

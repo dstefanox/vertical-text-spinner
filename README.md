@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dstefanox/vertical-text-spinner.svg?branch=master)](https://travis-ci.org/dstefanox/vertical-text-spinner)
+
 # vertical-text-spinner
 
 An Polymer element which shows text content which is animated when appearing/disappearing. Text gets replaced by new text which slides-in from above or below, while replaced text slides-out of the component through the bottom or the top of the component. 

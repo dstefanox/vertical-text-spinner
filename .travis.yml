@@ -6,8 +6,8 @@ before_script:
   - polylint
 env:
   global:
-    - secure: gZ5vpMlc9fuKSZeMmT6xf4+FIVWxET6f6Lkp6l5Qo9vL2X/KC/bMJF1v2w5xXFLFTdm/hPUDkeQRDUBBJhGcsXhJeWIvAXdPkObV9ZPRwpDnnN1qU5lOqVIy6gFjDm2Wm6UNXcRnyP1TrGpMwbG13EUtD0rF8LZqBm3B833sKS4=
-    - secure: DObDewETPYiIsASeC3UETPbQ6YBniRZdNV2eTM1xULvuFNDxXJD09KKyWOiMduublEIJRXLjBIXmD8cbVsgrbRUYA4bxcXffDeuc6q6HaQGU9HvIbLz6o3/oxi4fX2G9GwrZtijW2p2Rgw2l9koR3ovjcM97CSTWFUMh5rtXag8=
+    - secure: vXhVskyAfuqrC7e2xhtImNOQpLGxoJQ5JdrBV5Q9AzxOoJXjf7nqpGpuLgNC51z94+eAqbQ8opbZafYEDas0ZDH8BL5/prXj8vhTeAKCxA8vU7nq5i2FUY+4VgY4Q07loY1ybPqe3SFTlQ69/VOPvjjlBKYqMmSNnSkhjHi+PC8Akr+ZcqkOCVwmzekt27fvawO6pj8PKF0XqW/Bh8qHQXCrYDffVhW0cqgONRk2HsRcDEj3pDnfVCpBNTL51gzsa2EDBioRQLW5GTVNtwmfuCHJvo88qtQ63bVQ+w0wYvWWFuf8Gcss3o9TN0PuhYgXclvQaAYiLAhulbfRoDRE1RCdOylndtWecqALmWO+Mpxp578Qr1YLfbjckUf6CFDDaXKbGBgsMMHTivBE1YU+jo/Zcn72Q0ItTd7GFOew+VsoXULRDJTokchDt4771snZcktJzXrOJOfI91n11uTvNvbipjN37D3V51dTNjMuv+9/P4KFIWXymmQV+FRNjh6XfnzXZ3HI0myUJWSmkAMBfOKm8bmkJIb9ViWl+/eRuf6nsQKuV8KoplHQeQ8Y7AGJ/pozOHnPhhHPq6tULED5qxpIo/f2TwrMUnZkYr9x9yT/QJsaMm6wQ25JSsdXqksueArQ2ecXp7xiHIQ5exP80sG2q+gakzcf+dkmq5A40ZI=
+    - secure: SPvbE9pLerWZa3e5HSDEZfw6w3+6Wr+XRLpomciGFkC22bNy0NryQiilXHx8zh/4FtKqdwOZQyJc9LmjEEqk8lAnI6xqFmGJKLK5rtMzhQK3Q+tXhVsc6X48gPw3Fs+Nd74iorUWK3YQZgL3e5E5XQ77In6UqJ5b9BFXXdHn+J/U8u69zCYWUSnY/WMyNZAusAJ4CqeBba+Mndtd/v06kRz4aX8gRqFkmnPf5RdmoyiWWqgP1RrO3seXskluxOKj/qKifnvlPaHVziZ4u4hU07AiLAYo4YkuieQzk7dDbjp1QLm5mqQ1/Qfarq9C7BVnZuG8FYcTkBtZ+GgfjR+/Ww4ZvgpMPeNke5VnrnkGCemh+niW6IdwYguFlkL0ERBWH05VQ8UgiUoplcDxjJS05DUn6R9UVA97HJx1p+aAjA8n3iezXSrAELGcSxinLVwzIVFwE8pEPt6f2Cr5Qu0+fsRVr3ISf3nHlDow3JQCc5cGou3js0AcP9xPQpzfnQVdgvsmKOs69PD+OtdwVprW5QIZAWiI/syC6Yw4vfLpjk6nTYyN4IPUZuwv7nZ6Re7B7xWL7CAokzdalbQEQhP6Mi4ewt/FP/9HAuDQYsA/1t6LW8anFl2/AeTXCzPi6MDsIGUdNlTyG+h6vDcKjFZNmJTRbLsXvIH4e47dMKfR8lg=
     - CXX=g++-4.8
 node_js: stable
 addons:
@@ -19,7 +19,7 @@ addons:
     packages:
       - google-chrome-stable
       - g++-4.8
-  sauce_connect: true
+  sauce_connect: false
 script:
   - xvfb-run wct
   - "if [ \"${TRAVIS_PULL_REQUEST}\" = \"false\" ]; then wct -s 'default'; fi"

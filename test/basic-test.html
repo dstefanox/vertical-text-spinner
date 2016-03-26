@@ -84,12 +84,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test("spins up and interrupts spin by calling spinUp() while animation is not finished", function(done) {
 
-          myEl.addEventListener('spin-complete', function(event) {
+          var listener = function(event) {
+            myEl.removeEventListener('spin-complete',listener);
             assert.equal(event.detail.direction, 'up');
             assert.equal(event.detail.prevContent, 'Up and firing');
             assert.equal(event.detail.currContent, 'Again up');
             done();
-          });
+          };
+          myEl.addEventListener('spin-complete',listener);
           
           myEl.spinUp("Up and firing");
           setTimeout(function(){
@@ -98,14 +100,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
 
-        test.skip("spins down and interrupts spin by calling spinDown() while animation is not finished", function(done) {
+        test("spins down and interrupts spin by calling spinDown() while animation is not finished", function(done) {
 
-          myEl.addEventListener('spin-complete', function(event) {
+          var listener = function(event) {
+            myEl.removeEventListener('spin-complete',listener);
             assert.equal(event.detail.direction, 'down');
             assert.equal(event.detail.prevContent, 'Down and firing');
             assert.equal(event.detail.currContent, 'Again down');
             done();
-          });
+          };
+          myEl.addEventListener('spin-complete',listener);
           
           myEl.spinDown("Down and firing");
           setTimeout(function(){
